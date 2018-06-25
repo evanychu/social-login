@@ -23,6 +23,22 @@
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.0/firebaseui.css" />
     <!-- End FirebaseUI. -->
+
+    <script type="text/javascript">
+        var uiConfig = {
+            signInSuccessUrl: 'https://coleman-e5ccf.firebaseapp.com/authenComplete.html',
+            signInOptions: [
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            ],
+            // Terms of service url.
+            tosUrl: 'https://coleman-e5ccf.firebaseapp.com/tos.html'
+        };
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // The start method will wait until the DOM is loaded.
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
 </head>
 
 <body>
@@ -45,22 +61,6 @@
             }
             console.log("clickHandler: exit");
         }
-    </script>
-
-    <script type="text/javascript">
-        var uiConfig = {
-            signInSuccessUrl: 'https://coleman-e5ccf.firebaseapp.com/authenComplete.html',
-            signInOptions: [
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-            ],
-            // Terms of service url.
-            tosUrl: 'https://coleman-e5ccf.firebaseapp.com/tos.html'
-        };
-        // Initialize the FirebaseUI Widget using Firebase.
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        // The start method will wait until the DOM is loaded.
-        ui.start('#firebaseui-auth-container', uiConfig);
     </script>
 
 </body>
