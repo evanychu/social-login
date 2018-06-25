@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>social-login; test1</title>
+  </head>
+  <body>
+
+    <div id="message">
+      <h1>social-login; test1</h1>
+      <button id="idButton1" type="button" onclick="clickHandler()">call postmessage()</button>
+    </div>
+
+    <script>
+        function clickHandler() {
+            console.log("clickHandler: enter");
+            document.getElementById("idButton1").style.color = "red";
+            try {
+                window.postMessage("test data");
+            }
+            catch (ex) {
+                console.error("clickHandler: postMessage error");
+            }
+            console.log("clickHandler: exit");
+        }
+    </script>
+
+  </body>
+</html>
