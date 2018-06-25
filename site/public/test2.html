@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>social-login; test2; firebaseui</title>
+
+    <!-- Begin Firebase basic. -->
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDeNz9JaYBc9A0JMXPc07FBWxkkHITki98",
+            authDomain: "coleman-e5ccf.firebaseapp.com",
+            databaseURL: "https://coleman-e5ccf.firebaseio.com",
+            projectId: "coleman-e5ccf",
+            storageBucket: "coleman-e5ccf.appspot.com",
+            messagingSenderId: "1025692702293"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <!-- End Firebase basic. -->
+
+    <!-- Begin FirebaseUI. -->
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.0/firebaseui.css" />
+    <!-- End FirebaseUI. -->
+</head>
+
+<body>
+
+    <div id="message">
+        <h1>social-login; test2; firebaseui</h1>
+        <button id="idButton1" type="button" onclick="clickHandler()">button 1</button>
+        <div id="firebaseui-auth-container"></div>
+    </div>
+
+    <script>
+        function clickHandler() {
+            console.log("clickHandler: enter");
+            document.getElementById("idButton1").style.color = "red";
+            try {
+                window.postMessage("test data");
+            }
+            catch (ex) {
+                console.error("clickHandler: postMessage error");
+            }
+            console.log("clickHandler: exit");
+        }
+    </script>
+
+    <script type="text/javascript">
+        var uiConfig = {
+            signInSuccessUrl: 'https://coleman-e5ccf.firebaseapp.com/authenComplete.html',
+            signInOptions: [
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            ],
+            // Terms of service url.
+            tosUrl: 'https://coleman-e5ccf.firebaseapp.com/tos.html'
+        };
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // The start method will wait until the DOM is loaded.
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+
+</body>
+</html>
