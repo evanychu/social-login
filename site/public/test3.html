@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>social-login; test3; firebaseui; callback</title>
+    <title>social-login; test3</title>
 
     <!-- Begin Firebase basic. -->
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
@@ -43,7 +44,6 @@
                     const providerId = authResult.additionalUserInfo.providerId;
                     const operationType = authResult.operationType;
                     console.log(`signInSuccessWithAuthResult: email=${user.email}`);
-                    console.log(`signInSuccessWithAuthResult: id token=${credential.idToken.slice(0, 20)}...`);
                     // Return type determines whether we continue the redirect automatically
                     // or whether we leave that to developer to handle.
                     console.log("signInSuccessWithAuthResult: exit");
@@ -59,31 +59,8 @@
 </head>
 
 <body>
-
-    <div id="message">
-        <h1>social-login; test3; firebaseui; callback</h1>
-        <button id="idButton1" type="button" onclick="clickHandler()">button 1</button>
-        <div id="firebaseui-auth-container"></div>
-    </div>
-
-    <script>
-        function clickHandler() {
-            console.log("clickHandler: enter");
-            myPostMessage("call from clickHandler");
-            console.log("clickHandler: exit");
-        }
-
-        function myPostMessage(text) {
-            document.getElementById("idButton1").style.color = "red";
-            document.getElementById("idButton1").innerHTML = text;
-            try {
-                window.postMessage(test);
-            }
-            catch (ex) {
-                console.error("myPostMessage: postMessage error");
-            }
-        }
-    </script>
-
+    social-login; test3
+    <div id="firebaseui-auth-container"></div>
 </body>
+
 </html>

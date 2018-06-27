@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>social-login; authen completed</title>
+    <title>social-login; authenComplete</title>
     <!-- Begin Firebase basic. -->
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
     <script>
@@ -45,6 +45,11 @@
                             accessToken: accessToken,
                             providerData: providerData
                         }, null, '  ');
+                        console.log("onAuthStateChanged: deep link to app");
+                        setTimeout(function() {
+                            window.location.href=`exp989dbd2d58a34dcb98ce6eb92ad1fcf9://coleman.com/+?email=${email}`;
+                        },
+                        3000);
                     });
                 } else {
                     // User is signed out.
@@ -64,8 +69,7 @@
 </head>
 
 <body>
-    <h1>social-login; authen completed</h1>
-    <a href="exp://zd-yqp.demios78.native.exp.direct:80/+">deep link to Get-Outdoors</a>
+    social-login; authenComplete
     <div id="sign-in-status"></div>
     <div id="sign-in"></div>
     <div id="account-details"></div>
