@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>social-login; sign-out</title>
+    <!-- Begin Firebase basic. -->
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDeNz9JaYBc9A0JMXPc07FBWxkkHITki98",
+            authDomain: "coleman-e5ccf.firebaseapp.com",
+            databaseURL: "https://coleman-e5ccf.firebaseio.com",
+            projectId: "coleman-e5ccf",
+            storageBucket: "coleman-e5ccf.appspot.com",
+            messagingSenderId: "1025692702293"
+        };
+        console.log("try initialize firebase sdk");
+        firebase.initializeApp(config);
+    </script>
+    <!-- End Firebase basic. -->
+
+    <script type="text/javascript">
+        initApp = function () {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    console.log("onAuthStateChanged: user authenticated");
+                } else {
+                    console.log("onAuthStateChanged: user unauthenticated");
+                }
+            }, function (error) {
+                console.error(error);
+            });
+        };
+
+        window.addEventListener('load', function () {
+            initApp()
+        });
+
+        function logOutHandler() {
+            console.log("logOutHandler");
+            firebase.auth().signOut().then(function () {
+                console.log("logOutHandler: firebase sign out ok");
+            }, function (error) {
+                console.error(error);
+            });
+            FB.logout(function(response) {
+                console.log("logOutHandler: facebook logout ok");
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '2068508890059402', // App ID of "Coleman at Evan" in Facebook console.
+                cookie: true,  // enable cookies to allow the server to access the session
+                xfbml: true,  // parse social plugins on this page
+                status: true, // check user's authentication state
+                version: 'v3.0' // use graph api version
+            });
+            console.log("initialize facebook sdk ok");
+            FB.getLoginStatus(function (response) {
+                console.log(`facebook login status=${response.status}`);
+            });
+        }
+        console.log("try initialize facebook sdk");
+        // Load the SDK asynchronously
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    social-login; sign out
+    <div>
+        <button id="idLogOut" type="button" onclick="logOutHandler()">log out</button>
+    </div>
+    <div id="sign-in-status"></div>
+    <div id="account-details"></div>
+</body>
+
+</html>

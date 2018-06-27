@@ -44,6 +44,7 @@
                     const providerId = authResult.additionalUserInfo.providerId;
                     const operationType = authResult.operationType;
                     console.log(`signInSuccessWithAuthResult: email=${user.email}`);
+                    console.log(`signInSuccessWithAuthResult: accessToken=${credential.accessToken.slice(0, 20)}`);
                     // Return type determines whether we continue the redirect automatically
                     // or whether we leave that to developer to handle.
                     console.log("signInSuccessWithAuthResult: exit");
@@ -55,6 +56,24 @@
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
         // The start method will wait until the DOM is loaded.
         ui.start('#firebaseui-auth-container', uiConfig);
+
+        initApp = function () {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    console.log("onAuthStateChanged: user authenticated");
+                }
+                else {
+                    console.log("onAuthStateChanged: user unauthenticated");
+                }
+            },
+            function (error) {
+                console.error(error);
+            });
+        }
+
+        window.addEventListener('load', function () {
+            initApp();
+        });
     </script>
 </head>
 

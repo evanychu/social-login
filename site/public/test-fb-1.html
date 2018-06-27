@@ -41,7 +41,7 @@
                 appId: '2068508890059402', // App ID of "Coleman at Evan" in Facebook console.
                 cookie: true,  // enable cookies to allow the server to access the session
                 xfbml: true,  // parse social plugins on this page
-                version: 'v2.8' // use graph api version
+                version: 'v3.0' // use graph api version
             });
 
             // Now that we've initialized the JavaScript SDK, we call
@@ -67,7 +67,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js"; // TODO evanchu change to non-debug version
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
@@ -79,6 +79,13 @@
                 console.log('Successful login for: ' + response.name);
                 document.getElementById('status').innerHTML =
                     'Thanks for logging in, ' + response.name + '!';
+            });
+        }
+
+        function logOutHandler() {
+            console.log("logOutHandler: try sign out");
+            FB.logout(function(response) {
+                console.log("logOutHandler: logout ok");
             });
         }
     </script>
@@ -93,7 +100,9 @@
     </fb:login-button>
     <div id="status"></div>
     <a href='https://www.facebook.com/v3.0/dialog/oauth?client_id={2068508890059402}&redirect_uri={"https://coleman-e5ccf.firebaseapp.com/authenComplete.html"}&state={mystate}'>Facebook manual authen</a>
-
+    <div>
+        <button id="idLogOut" type="button" onclick="logOutHandler()">log out</button>
+    </div>
 </body>
 
 </html>
