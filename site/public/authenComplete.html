@@ -34,27 +34,22 @@
                     var providerData = user.providerData;
                     user.getIdToken().then(function (accessToken) {
                         document.getElementById('sign-in-status').textContent = 'Signed in';
-                        document.getElementById('sign-in').textContent = 'Sign out';
                         document.getElementById('account-details').textContent = JSON.stringify({
                             displayName: displayName,
                             email: email,
-                            emailVerified: emailVerified,
-                            phoneNumber: phoneNumber,
-                            photoURL: photoURL,
-                            uid: uid,
                             accessToken: accessToken,
                             providerData: providerData
                         }, null, '  ');
                         console.log("onAuthStateChanged: deep link to app");
                         setTimeout(function() {
-                            window.location.href=`exp989dbd2d58a34dcb98ce6eb92ad1fcf9://coleman.com/+?email=${email}`;
+                            let finalEmail = encodeURIComponent(email);
+                            window.location.href=`getoutdoors://coleman.com/+?email=${finalEmail}`;
                         },
                         3000);
                     });
                 } else {
                     // User is signed out.
                     document.getElementById('sign-in-status').textContent = 'Signed out';
-                    document.getElementById('sign-in').textContent = 'Sign in';
                     document.getElementById('account-details').textContent = 'null';
                 }
             }, function (error) {
@@ -71,7 +66,6 @@
 <body>
     social-login; authenComplete
     <div id="sign-in-status"></div>
-    <div id="sign-in"></div>
     <div id="account-details"></div>
 </body>
 
