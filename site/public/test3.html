@@ -28,7 +28,6 @@
 
     <script type="text/javascript">
         var uiConfig = {
-            signInSuccessUrl: '/authenComplete.html',
             signInOptions: [
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -45,10 +44,16 @@
                     const operationType = authResult.operationType;
                     console.log(`signInSuccessWithAuthResult: email=${user.email}`);
                     console.log(`signInSuccessWithAuthResult: accessToken=${credential.accessToken.slice(0, 20)}`);
+                    const resultJsonString = {
+                        "email": user.email,
+                        "accessToken": credential.accessToken,
+                        "providerId": providerId,
+                    };
+                    window.location.href=`getoutdoors://coleman.com/+?jsonData=${encodeURIComponent(JSON.stringify(resultJsonString))}`;
                     // Return type determines whether we continue the redirect automatically
                     // or whether we leave that to developer to handle.
                     console.log("signInSuccessWithAuthResult: exit");
-                    return true; // Do redirect.
+                    return false; // Do not redirect after successfull authentication.
                 },
             }
         };
