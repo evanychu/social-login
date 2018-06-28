@@ -39,15 +39,21 @@
                     console.log("signInSuccessWithAuthResult: enter");
                     const user = authResult.user;
                     const credential = authResult.credential;
-                    const isNewUser = authResult.additionalUserInfo.isNewUser;
-                    const providerId = authResult.additionalUserInfo.providerId;
                     const operationType = authResult.operationType;
                     console.log(`signInSuccessWithAuthResult: email=${user.email}`);
-                    console.log(`signInSuccessWithAuthResult: accessToken=${credential.accessToken.slice(0, 20)}`);
+                    console.log(`signInSuccessWithAuthResult: providerId=${credential.providerId}`);
+                    let token = "";
+                    if (credential.providerId == "google.com") {
+                        token = credential.idToken;
+                    }
+                    else if (credential.providerId == "facebook.com") {
+                        token = credential.accessToken;
+                    }
+                    console.log(`signInSuccessWithAuthResult: token=${token.slice(0, 20)}`);
                     const resultJsonString = {
                         "email": user.email,
-                        "accessToken": credential.accessToken,
-                        "providerId": providerId,
+                        "token": token,
+                        "providerId": credential.providerId,
                     };
                     window.location.href=`getoutdoors://coleman.com/+?jsonData=${encodeURIComponent(JSON.stringify(resultJsonString))}`;
                     // Return type determines whether we continue the redirect automatically
