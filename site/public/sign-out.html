@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>social-login; sign-out</title>
-    <!-- Begin Firebase basic. -->
+    <!-- Begin Firebase initialization. -->
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -19,7 +19,7 @@
         console.log("try initialize firebase sdk");
         firebase.initializeApp(config);
     </script>
-    <!-- End Firebase basic. -->
+    <!-- End Firebase initialization. -->
 
     <script type="text/javascript">
         initApp = function () {
@@ -55,6 +55,7 @@
 <body>
 
     <script>
+        // Begin Facebook initialization.
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '2068508890059402', // App ID of "Coleman at Evan" in Facebook console.
@@ -77,6 +78,7 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+        // End Facebook initialization.
     </script>
 
     social-login; sign out
