@@ -1,0 +1,20 @@
+/* This CSS follows BEM convention: http://getbem.com/introduction/ */
+
+.image--coleman {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.normalText {
+    font-family: sans-serif;
+}
+
+.normalText--todo {
+    color: black;
+    font-size: 16;
+    text-align: center;
+    margin-bottom: 50px;
+}
